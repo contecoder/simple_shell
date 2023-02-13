@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+#include <unistd.h>
+
+#include <sys/wait.h>
+#include <stdlib.h> 
+#include <string.h>
+
+#define BUFSIZE 1024
+
+int main(int argc, char **argv, char **envp) {
+  char buf[BUFSIZE];
+  char *arg[BUFSIZE];
+  char *arg[BUFSIZE];  
+  argc = argc;
+  argv = argv;
+  while (1) {
+    
+    printf("$ ");
+    
+    fflush(stdout);
+    
+  
+    
+    if (fgets(buf, sizeof(buf), stdin) == NULL) {
+      
+      break;
+      
+    }
+    
+
+    
+    buf[strlen(buf) - 1] = '\0';
+    
+
+    
+     pid = fork();
+    
+    if (pid == 0) {
+      if (buf == NULL) {
+	
+	perror("malloc failed");
+	
+	exit(EXIT_FAILURE);
+	
+      }
+      
+      *arg = buf;
+      execve(buf, arg, envp);
+    } else if (pid > 0) {
+      
+      wait(NULL);
+      
+    }
+    
+  }
+  
+
+  
+  return 0;
+  
+}
+
